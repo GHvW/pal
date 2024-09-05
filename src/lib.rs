@@ -1,5 +1,6 @@
 use std::{borrow::Borrow, string::String};
 
+#[derive(PartialEq, Debug)]
 pub enum Token {
     Colon,
     Dash,
@@ -9,71 +10,71 @@ pub enum Token {
 
 pub fn is_bible_book(input: &str) -> bool {
     let it = input.to_lowercase();
-    it == "1 Chronicles"
-    || it == "1 Corinthians"
-    || it == "1 John"
-    || it == "1 Kings"
-    || it == "1 Peter"
-    || it == "1 Samuel"
-    || it == "1 Thessalonians"
-    || it == "1 Timothy"
-    || it == "2 Chronicles"
-    || it == "2 Corinthians"
-    || it == "2 John"
-    || it == "2 Kings"
-    || it == "2 Peter"
-    || it == "2 Samuel"
-    || it == "2 Thessalonians"
-    || it == "2 Timothy"
-    || it == "3 John"
-    || it == "Acts"
-    || it == "Amos"
-    || it == "Colossians"
-    || it == "Daniel"
-    || it == "Deuteronomy"
-    || it == "Ecclesiastes"
-    || it == "Ephesians"
-    || it == "Esther"
-    || it == "Exodus"
-    || it == "Ezekiel"
-    || it == "Ezra"
-    || it == "Galatians"
-    || it == "Genesis"
-    || it == "Habakuk"
-    || it == "Haggai"
-    || it == "Hebrews"
-    || it == "Hosea"
-    || it == "Isaiah"
-    || it == "James"
-    || it == "Jeremiah"
-    || it == "Job"
-    || it == "Joel"
-    || it == "John"
-    || it == "Jonah"
-    || it == "Joshua"
-    || it == "Jude"
-    || it == "Judges"
-    || it == "Lamentations"
-    || it == "Leviticus"
-    || it == "Luke"
-    || it == "Malachi"
-    || it == "Mark"
-    || it == "Matthew"
-    || it == "Micah"
-    || it == "Nahum"
-    || it == "Nehemiah"
-    || it == "Numbers"
-    || it == "Philemon"
-    || it == "Philippians" 
-    || it == "Proverbs"
-    || it == "Psalms"
-    || it == "Revelation"
-    || it == "Romans"
-    || it == "Ruth"
-    || it == "Songs of Solomon"
-    || it == "Titus"
-    || it == "Zechariah"
-    || it == "Zephaniah"
+    it == "1 chronicles"
+    || it == "1 corinthians"
+    || it == "1 john"
+    || it == "1 kings"
+    || it == "1 peter"
+    || it == "1 samuel"
+    || it == "1 thessalonians"
+    || it == "1 timothy"
+    || it == "2 chronicles"
+    || it == "2 corinthians"
+    || it == "2 john"
+    || it == "2 kings"
+    || it == "2 peter"
+    || it == "2 samuel"
+    || it == "2 thessalonians"
+    || it == "2 timothy"
+    || it == "3 john"
+    || it == "acts"
+    || it == "amos"
+    || it == "colossians"
+    || it == "daniel"
+    || it == "deuteronomy"
+    || it == "ecclesiastes"
+    || it == "ephesians"
+    || it == "esther"
+    || it == "exodus"
+    || it == "ezekiel"
+    || it == "ezra"
+    || it == "galatians"
+    || it == "genesis"
+    || it == "habakuk"
+    || it == "haggai"
+    || it == "hebrews"
+    || it == "hosea"
+    || it == "isaiah"
+    || it == "james"
+    || it == "jeremiah"
+    || it == "job"
+    || it == "joel"
+    || it == "john"
+    || it == "jonah"
+    || it == "joshua"
+    || it == "jude"
+    || it == "judges"
+    || it == "lamentations"
+    || it == "leviticus"
+    || it == "luke"
+    || it == "malachi"
+    || it == "mark"
+    || it == "matthew"
+    || it == "micah"
+    || it == "nahum"
+    || it == "nehemiah"
+    || it == "numbers"
+    || it == "philemon"
+    || it == "philippians" 
+    || it == "proverbs"
+    || it == "psalms"
+    || it == "revelation"
+    || it == "romans"
+    || it == "ruth"
+    || it == "songs of solomon"
+    || it == "titus"
+    || it == "zechariah"
+    || it == "zephaniah"
 }
 
 
@@ -207,8 +208,22 @@ pub fn scan(input: &str) -> Vec<Token> {
 
 #[cfg(test)]
 mod tests {
+    use super::*;
+
     #[test]
     fn it_works() {
         assert_eq!(2 + 2, 4);
+    }
+
+
+    #[test]
+    fn parse_test() {
+        let it = scan("1 Timothy 2:1-2");
+
+        let actual = it.get(0).unwrap();
+
+        let expected = Token::Book("1 Timothy".to_string());
+
+        assert_eq!(*actual, expected);
     }
 }
